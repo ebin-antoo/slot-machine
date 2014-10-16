@@ -144,6 +144,7 @@
     <Content Include="jslots-jq.js" />
     <Content Include="js\jquery.js" />
     <Content Include="js\main.js" />
+    <Content Include="slot.html" />
     <Content Include="slot_machine1.0.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
