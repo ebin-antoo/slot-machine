@@ -4,6 +4,44 @@
     <title></title>
 </head>
 <body>
+    <canvas id="viewport" width="576" height="640"></canvas>
+
+    <script type="text/javascript">
+    var canvas = document.getElementById('viewport'),
+    context = canvas.getContext('2d');
+
+    //var imageObj = new Image();
+
+    //imageObj.onload = function () {
+      //  context.drawImage(imageObj, 45, 30);
+    //};
+    //imageObj.src = 'button.png';
+
+    make_base();
+    overlay();
+
+    function make_base() {
+        base_image = new Image();
+        base_image.src = 'slot_machine1.0.jpg';
+        base_image.onload = function () {
+            context.drawImage(base_image, -50, -30, 576, 792);
+        }
+    }
+
+    function overlay() {
+        over = new Image();
+        over.src = 'button.png';
+        over.onload = function () {
+            context.drawImage(over, 348, 336, 50, 50);
+        }
+    }
+
+
+
+    
+    </script>
+
+
 
 </body>
 </html>

@@ -57,6 +57,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\.DS_Store" />
+    <Content Include="images\Thumbs.db" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -65,7 +67,84 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="button.png" />
+    <Content Include="HtmlPage1.html" />
+    <Content Include="images\1.jpg" />
+    <Content Include="images\10a.jpg" />
+    <Content Include="images\10b.jpg" />
+    <Content Include="images\10c.jpg" />
+    <Content Include="images\10d.jpg" />
+    <Content Include="images\11a.jpg" />
+    <Content Include="images\11b.jpg" />
+    <Content Include="images\11c.jpg" />
+    <Content Include="images\11d.jpg" />
+    <Content Include="images\11e.jpg" />
+    <Content Include="images\11f.jpg" />
+    <Content Include="images\11g.jpg" />
+    <Content Include="images\12a.jpg" />
+    <Content Include="images\12b.jpg" />
+    <Content Include="images\12c.jpg" />
+    <Content Include="images\12d.jpg" />
+    <Content Include="images\13a.jpg" />
+    <Content Include="images\13b.jpg" />
+    <Content Include="images\13c.jpg" />
+    <Content Include="images\13d.jpg" />
+    <Content Include="images\14a.jpg" />
+    <Content Include="images\14b.jpg" />
+    <Content Include="images\14c.jpg" />
+    <Content Include="images\14d.jpg" />
+    <Content Include="images\14e.jpg" />
+    <Content Include="images\14f.jpg" />
+    <Content Include="images\14g.jpg" />
+    <Content Include="images\14h.jpg" />
+    <Content Include="images\15a.jpg" />
+    <Content Include="images\15b.jpg" />
+    <Content Include="images\16a.jpg" />
+    <Content Include="images\16b.jpg" />
+    <Content Include="images\17a.jpg" />
+    <Content Include="images\17b.jpg" />
+    <Content Include="images\18.jpg" />
+    <Content Include="images\19a.jpg" />
+    <Content Include="images\19b.jpg" />
+    <Content Include="images\19c.jpg" />
+    <Content Include="images\19d.jpg" />
+    <Content Include="images\19e.jpg" />
+    <Content Include="images\20a.jpg" />
+    <Content Include="images\20b.jpg" />
+    <Content Include="images\20c.jpg" />
+    <Content Include="images\20d.jpg" />
+    <Content Include="images\21a.jpg" />
+    <Content Include="images\21b.jpg" />
+    <Content Include="images\2a.jpg" />
+    <Content Include="images\2b.jpg" />
+    <Content Include="images\2c.jpg" />
+    <Content Include="images\3.jpg" />
+    <Content Include="images\4.jpg" />
+    <Content Include="images\5.jpg" />
+    <Content Include="images\6.jpg" />
+    <Content Include="images\7a.jpg" />
+    <Content Include="images\7b.jpg" />
+    <Content Include="images\7c.jpg" />
+    <Content Include="images\7d.jpg" />
+    <Content Include="images\7e.jpg" />
+    <Content Include="images\8a.jpg" />
+    <Content Include="images\8b.jpg" />
+    <Content Include="images\8c.jpg" />
+    <Content Include="images\9a.jpg" />
+    <Content Include="images\9b.jpg" />
+    <Content Include="images\final.jpg" />
+    <Content Include="images\preview.jpg" />
+    <Content Include="images\tut.html" />
     <Content Include="index.html" />
+    <Content Include="index2.html" />
+    <Content Include="jquery-1.11.1.min.js" />
+    <Content Include="jquery-easing.js" />
+    <Content Include="jquery.jSlots.min.js" />
+    <Content Include="jslot.js" />
+    <Content Include="jslots-jq.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\main.js" />
+    <Content Include="slot_machine1.0.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
