@@ -8,7 +8,7 @@
 var playerMoney = 1000;
 var winnings = 0;
 var jackpot = 5000;
-var turn = 0;
+
 var playerBet = 0;
 var winNumber = 0;
 var lossNumber = 0;
@@ -23,6 +23,8 @@ var bars = 0;
 var bells = 0;
 var sevens = 0;
 var blanks = 0;
+
+
 
 var stage;
 /* Utility function to show Player Stats */
@@ -218,37 +220,6 @@ function determineWinnings()
     
 }
 
-/* When the player clicks the spin button the game kicks off */
-function spinButton()
-{
-    playerBet = $("div#betEntry>input").val();
-
-    if (playerMoney == 0)
-    {
-        if (confirm("You ran out of Money! \nDo you want to play again?")) {
-            resetAll();
-            showPlayerStats();
-        }
-    }
-    else if (playerBet > playerMoney) {
-        alert("You don't have enough Money to place that bet.");
-    }
-    else if (playerBet < 0) {
-        alert("All bets must be a positive $ amount.");
-    }
-    else if (playerBet <= playerMoney) {
-        spinResult = Reels();
-        fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
-        $("div#result>p").text(fruits);
-        determineWinnings();
-        turn++;
-        showPlayerStats();
-    }
-    else {
-        alert("Please enter a valid bet amount");
-    }
-}
-
 //Draws Canvas
 function init() {
     stage = new createjs.Stage(document.getElementById("canvas"));
@@ -276,9 +247,9 @@ function drawSlotMachine() {
     reset.y = 445;
 
     //bet one button
-    var bet_1 = new createjs.Bitmap("images/bet-1.jpg");
-    bet_1.x = 587;
-    bet_1.y = 445;
+    var bet_one = new createjs.Bitmap("images/bet-1.jpg");
+    bet_one.x = 587;
+    bet_one.y = 445;
 
     //bet more button
     var bet_more = new createjs.Bitmap("images/bet-more.jpg");
@@ -289,5 +260,55 @@ function drawSlotMachine() {
     var spin = new createjs.Bitmap("images/spin.jpg");
     spin.x = 758;
     spin.y = 445;
-    stage.addChild(slotMachine, reset, bet_1, bet_more, spin);
-}  
+    stage.addChild(slotMachine, reset, bet_one, bet_more, spin);
+
+    /*event for the buttons*/
+    //reset
+    reset.addEventListener("click", resetGame);
+
+    //bet_one
+    bet_one.addEventListener("click", betOne);
+
+    //bet_more
+    bet_more.addEventListener("click", betMore);
+
+    //spin
+    spin.addEventListener("click", spinGame);
+}
+
+
+//spin button - function
+/* When the player clicks the spin button the game kicks off */
+function spinGame() {
+    if (bet = 0) {
+        alert("Please choose a bet");
+    }
+    else {
+        
+
+        if (playerMoney == 0) {
+            if (confirm("You ran out of Money! \nDo you want to play again?")) {
+                resetAll();
+                showPlayerStats();
+            }
+        }
+        else if (playerBet > playerMoney) {
+            alert("You don't have enough Money to place that bet.");
+        }
+        else if (playerBet < 0) {
+            alert("All bets must be a positive $ amount.");
+        }
+        else if (playerBet <= playerMoney) {
+            spinResult = Reels();
+            bet = bet - playerBet;
+            //fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
+            //$("div#result>p").text(fruits);
+            determineWinnings();
+            turn++;
+            showPlayerStats();
+        }
+        else {
+            alert("Please enter a valid bet amount");
+        }
+    }
+}
