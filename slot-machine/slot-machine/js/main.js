@@ -8,36 +8,64 @@
 var playerMoney = 1000;
 var winnings = 0;
 var jackpot = 5000;
-
+//var jackpotMony
+//var money
+//var powerButton
+//var spinButton
+//var reset
+//var bet
+//var bet5
+//var bet10
+//var betAmount
+var turn = 0;
+//var playerTurn
 var playerBet = 0;
 var winNumber = 0;
+//var wins
 var lossNumber = 0;
 var spinResult;
-var fruits = "";
-var winRatio = 0;
-var grapes = 0;
-var bananas = 0;
-var oranges = 0;
-var cherries = 0;
-var bars = 0;
-var bells = 0;
-var sevens = 0;
-var blanks = 0;
+
+//img
+var cashImg = new Image();
+cashImg.src = "images/cash.png";
+
+var number7Img = new Image();
+number7Img.src = "images/number7.png";
+
+var barImg = new Image();
+barImg.src = "images/bar.png";
+
+var diamondImg = new Image();
+diamondImg.src = "images/diamond.jpg";
+
+var bellImg = new Image();
+bellImg.src = "images/bell.jpg";
+
+var coinImg = new Image();
+coinImg.src = "images/coin.png";
+
+var cardImg = new Image();
+cardImg.src = "images/playingcard.jpg";
+
+var goldbarImg = new Image();
+goldbarImg.src = "images/goldbar.jpg";
+
+//var ratio
+//var win
+//var bets = 0;
 
 
+//reel Lines
+var reelLine1;
+var reelLine2;
+var reelLine3;
+
+//start up screen reel
+var reel = [reelLine1 = new createjs.Bitmap(cashImg), reelLine2 = new createjs.Bitmap(number7Img), reelLine3 = new createjs.Bitmap(barImg)];
 
 var stage;
-/* Utility function to show Player Stats */
-function showPlayerStats()
-{
-    winRatio = winNumber / turn;
-    $("#jackpot").text("Jackpot: " + jackpot);
-    $("#playerMoney").text("Player Money: " + playerMoney);
-    $("#playerTurn").text("Turn: " + turn);
-    $("#playerWins").text("Wins: " + winNumber);
-    $("#playerLosses").text("Losses: " + lossNumber);
-    $("#playerWinRatio").text("Win Ratio: " + (winRatio * 100).toFixed(2) + "%");
-}
+
+
 
 /* Utility function to reset all fruit tallies */
 function resetFruitTally() {
@@ -241,6 +269,16 @@ function drawSlotMachine() {
     slotMachine.x = -95;
     slotMachine.y = -50;
 
+    //reel line
+    reel[0].x = 542;
+    reel[0].y = 248;
+
+    reel[1].x = 641;
+    reel[1].y = 248;
+
+    reel[2].x = 742;
+    reel[2].y = 248;
+
     //reset button
     var reset = new createjs.Bitmap("images/reset2.0.jpg");
     reset.x = 500;
@@ -260,7 +298,9 @@ function drawSlotMachine() {
     var spin = new createjs.Bitmap("images/spin.jpg");
     spin.x = 758;
     spin.y = 445;
+
     stage.addChild(slotMachine, reset, bet_one, bet_more, spin);
+    stage.addChild(reel[0], reel[1], reel[2]);
 
     /*event for the buttons*/
     //reset
@@ -274,6 +314,21 @@ function drawSlotMachine() {
 
     //spin
     spin.addEventListener("click", spinGame);
+}
+
+/* Utility function to show Player Stats */
+function showPlayerStats() {
+    /*winRatio = winNumber / turn;
+    $("#jackpot").text("Jackpot: " + jackpot);
+    $("#playerMoney").text("Player Money: " + playerMoney);
+    $("#playerTurn").text("Turn: " + turn);
+    $("#playerWins").text("Wins: " + winNumber);
+    $("#playerLosses").text("Losses: " + lossNumber);
+    $("#playerWinRatio").text("Win Ratio: " + (winRatio * 100).toFixed(2) + "%");
+    */
+
+    
+    stage.update();
 }
 
 
