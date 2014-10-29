@@ -276,7 +276,7 @@ function drawSlotMachine() {
     reset.y = 445;
 
     //bet one button
-    var bet_1 = new createjs.Bitmap("images/bet-11.jpg");
+    var bet_1 = new createjs.Bitmap("images/bet-1.jpg");
     bet_1.x = 587;
     bet_1.y = 445;
 

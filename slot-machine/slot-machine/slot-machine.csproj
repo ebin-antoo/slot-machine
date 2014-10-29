@@ -60,6 +60,8 @@
     <Content Include="images\.DS_Store" />
     <Content Include="images\bar.png" />
     <Content Include="images\bell.jpg" />
+    <Content Include="images\bet-1.jpg" />
+    <Content Include="images\bet-more.jpg" />
     <Content Include="images\bg.jpg" />
     <Content Include="images\bg1.JPG" />
     <Content Include="images\bg2.jpg" />
@@ -69,12 +71,14 @@
     <Content Include="images\imageedit_3_8631269257.gif" />
     <Content Include="images\number7.gif" />
     <Content Include="images\reset1.0.jpg" />
+    <Content Include="images\reset2.0.jpg" />
     <Content Include="images\slot_machine3.0.jpg" />
     <Content Include="images\slot_machine4.0.jpg" />
     <Content Include="images\slot_machine5.0.jpg" />
     <Content Include="images\slot_machine6.0.jpg" />
     <Content Include="images\slot_machine7.0.jpg" />
     <Content Include="images\slot_machine8.0.jpg" />
+    <Content Include="images\spin.jpg" />
     <Content Include="images\Thumbs.db" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
