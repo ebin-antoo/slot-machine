@@ -58,6 +58,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\.DS_Store" />
+    <Content Include="images\bar.png" />
+    <Content Include="images\bell.jpg" />
+    <Content Include="images\bg.jpg" />
+    <Content Include="images\bg1.JPG" />
+    <Content Include="images\bg2.jpg" />
+    <Content Include="images\cash.jpg" />
+    <Content Include="images\coin.png" />
+    <Content Include="images\diamond.jpg" />
+    <Content Include="images\imageedit_3_8631269257.gif" />
+    <Content Include="images\number7.gif" />
+    <Content Include="images\slot_machine3.0.jpg" />
+    <Content Include="images\slot_machine4.0.jpg" />
+    <Content Include="images\slot_machine5.0.jpg" />
+    <Content Include="images\slot_machine6.0.jpg" />
+    <Content Include="images\slot_machine7.0.jpg" />
+    <Content Include="images\slot_machine8.0.jpg" />
     <Content Include="images\Thumbs.db" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -68,14 +84,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
+    <Content Include="js\easeljs-0.7.1.min.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\main.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="js\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
