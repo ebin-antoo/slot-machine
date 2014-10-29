@@ -269,7 +269,9 @@ function drawSlotMachine() {
     slotMachine.x = -95;
     slotMachine.y = -50;
 
-    stage.enableMouseOver();
+    var reset = new createjs.Bitmap("images/reset2.0.jpg");
+    reset.x = 500;
+    reset.y = 445;
 
-    stage.addChild(slotMachine);
+    stage.addChild(slotMachine, reset);
 }  
