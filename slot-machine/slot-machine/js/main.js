@@ -265,13 +265,29 @@ function handleTick() {
 
 //adds images to canvas and positions them
 function drawSlotMachine() {
+    //base slot machine
     var slotMachine = new createjs.Bitmap("images/slot_machine8.0.jpg");
     slotMachine.x = -95;
     slotMachine.y = -50;
 
+    //reset button
     var reset = new createjs.Bitmap("images/reset2.0.jpg");
     reset.x = 500;
     reset.y = 445;
 
-    stage.addChild(slotMachine, reset);
+    //bet one button
+    var bet_1 = new createjs.Bitmap("images/bet-11.jpg");
+    bet_1.x = 587;
+    bet_1.y = 445;
+
+    //bet more button
+    var bet_more = new createjs.Bitmap("images/bet-more.jpg");
+    bet_more.x = 673;
+    bet_more.y = 445;
+
+    //spin button
+    var spin = new createjs.Bitmap("images/spin.jpg");
+    spin.x = 758;
+    spin.y = 445;
+    stage.addChild(slotMachine, reset, bet_1, bet_more, spin);
 }  
