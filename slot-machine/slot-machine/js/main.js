@@ -8,22 +8,31 @@
 var playerMoney = 1000;
 var winnings = 0;
 var jackpot = 5000;
-//var jackpotMony
-//var money
-//var powerButton
-//var spinButton
-//var reset
-//var bet
-//var bet5
-//var bet10
-//var betAmount
+var playerValue = 0;
+var betValue;
 var turn = 0;
-//var playerTurn
 var playerBet = 0;
 var winNumber = 0;
-//var wins
 var lossNumber = 0;
 var spinResult;
+
+var betMoney = 0;
+var betValue;
+var betOne = 0;
+
+var jackpotMoney;
+var winningMoney;
+
+var stage;
+
+var cash = 0;
+var number7 = 0;
+var bar = 0;
+var diamond = 0;
+var bell = 0;
+var coin = 0;
+var card = 0;
+var gold = 0;
 
 //img
 var cashImg = new Image();
@@ -50,10 +59,7 @@ cardImg.src = "images/playingcard.jpg";
 var goldbarImg = new Image();
 goldbarImg.src = "images/goldbar.jpg";
 
-//var ratio
-//var win
-//var bets = 0;
-
+var bet1 = 0;
 
 //reel Lines
 var reelLine1;
@@ -63,20 +69,16 @@ var reelLine3;
 //start up screen reel
 var reel = [reelLine1 = new createjs.Bitmap(cashImg), reelLine2 = new createjs.Bitmap(number7Img), reelLine3 = new createjs.Bitmap(barImg)];
 
-var stage;
-
-
-
 /* Utility function to reset all fruit tallies */
 function resetFruitTally() {
-    grapes = 0;
-    bananas = 0;
-    oranges = 0;
-    cherries = 0;
-    bars = 0;
-    bells = 0;
-    sevens = 0;
-    blanks = 0;
+    cash = 0;
+    number7 = 0;
+    bar = 0;
+    diamond = 0;
+    bell = 0;
+    coin = 0;
+    card = 0;
+    gold = 0;
 }
 
 /* Utility function to reset the player stats */
@@ -89,6 +91,7 @@ function resetAll() {
     winNumber = 0;
     lossNumber = 0;
     winRatio = 0;
+    bet1 = 0;
 }
 
 /* Check to see if the player won the jackpot */
@@ -106,15 +109,17 @@ function checkJackPot() {
 /* Utility function to show a win message and increase player money */
 function showWinMessage() {
     playerMoney += winnings;
-    $("div#winOrLose>p").text("You Won: $" + winnings);
+    console.log("You Won: $" + winnings);
     resetFruitTally();
     checkJackPot();
+
+    winningMoney.text = winnings;
 }
 
 /* Utility function to show a loss message and reduce player money */
 function showLossMessage() {
     playerMoney -= playerBet;
-    $("div#winOrLose>p").text("You Lost!");
+    console.log("You Lost!");
     resetFruitTally();
 }
 
@@ -139,45 +144,44 @@ function Reels() {
         outCome[spin] = Math.floor((Math.random() * 65) + 1);
         switch (outCome[spin]) {
             case checkRange(outCome[spin], 1, 27):  // 41.5% probability
-                betLine[spin] = "blank";
-                //call draw fruit method
-                drawfruits(spin, "blank");
-                blanks++;
+                betLine[spin] = "card";
+                card++;
+                reel[spin].image = cardImg;
                 break;
             case checkRange(outCome[spin], 28, 37): // 15.4% probability
-                betLine[spin] = "Grapes";
-                drawfruits(spin, "grapes");
-                grapes++;
+                betLine[spin] = "cash";
+                cash++;
+                reel[spin].image = cashImg;
                 break;
             case checkRange(outCome[spin], 38, 46): // 13.8% probability
-                betLine[spin] = "Banana";
-                drawfruits(spin, "banana");
-                bananas++;
+                betLine[spin] = "number7";
+                number7++;
+                reel[spin].image = number7Img;
                 break;
             case checkRange(outCome[spin], 47, 54): // 12.3% probability
-                betLine[spin] = "Orange";
-                drawfruits(spin, "orange");
-                oranges++;
+                betLine[spin] = "bar";
+                bar++;
+                reel[spin].image = barImg;
                 break;
             case checkRange(outCome[spin], 55, 59): //  7.7% probability
-                betLine[spin] = "Cherry";
-                drawfruits(spin, "cherries");
-                cherries++;
+                betLine[spin] = "diamond";
+                diamond++;
+                reel[spin].image = diamondImg;
                 break;
             case checkRange(outCome[spin], 60, 62): //  4.6% probability
-                betLine[spin] = "Bar";
-                drawfruits(spin, "bar");
-                bars++;
+                betLine[spin] = "bell";
+                reel[spin].image = bellImg;
+                bell++;
                 break;
             case checkRange(outCome[spin], 63, 64): //  3.1% probability
-                betLine[spin] = "Bell";
-                drawfruits(spin, "bell");
-                bells++;
+                betLine[spin] = "coin";
+                coin++;
+                reel[spin].image = coinImg;
                 break;
             case checkRange(outCome[spin], 65, 65): //  1.5% probability
-                betLine[spin] = "Seven";
-                drawfruits(spin, "seven");
-                sevens++;
+                betLine[spin] = "goldbar";
+                gold++;
+                reel[spin].image = goldbarImg;
                 break;
         }
     }
@@ -299,7 +303,52 @@ function drawSlotMachine() {
     spin.x = 758;
     spin.y = 445;
 
-    stage.addChild(slotMachine, reset, bet_one, bet_more, spin);
+    //jackpotsign board
+    var jackpotSign = new createjs.Bitmap("images/jackpotsign.jpg");
+    jackpotSign.x = 638;
+    jackpotSign.y = 215;
+
+    jackpotMoney = new createjs.Text(jackpot, "22px Arial", "red");
+    jackpotMoney.x = 660;
+    jackpotMoney.y = 214;
+
+
+    //player money sign
+    var playerSign = new createjs.Bitmap("images/playersign.jpg");
+    playerSign.x = 481;
+    playerSign.y = 415;
+
+    var playerValue = new createjs.Text(playerMoney, "22px Arial", "white");
+    playerValue.x = 514;
+    playerValue.y = 415;
+    
+
+    //winningsign board
+    var winningSign = new createjs.Bitmap("images/winningsign.jpg");
+    winningSign.x = 797;
+    winningSign.y = 412;
+
+    var winningMoney = new createjs.Text(winnings, "22px Arial", "white");
+    winningMoney.x = 831;
+    winningMoney.y = 412;
+    
+
+    //bet sign board
+    var betSign = new createjs.Bitmap("images/betsign.jpg");
+    betSign.x = 638;
+    betSign.y = 520;
+
+    betValue = new createjs.Text(bet1, "22px Arial", "blue");
+    betValue.x = 645;
+    betValue.y = 518;
+
+    stage.addChild(slotMachine, reset, bet_one, bet_more, spin,
+                    jackpotSign, jackpotMoney,
+                    playerSign, playerValue,
+                    winningSign, winningMoney,
+                    betSign, betValue
+                    );
+
     stage.addChild(reel[0], reel[1], reel[2]);
 
     /*event for the buttons*/
@@ -307,7 +356,7 @@ function drawSlotMachine() {
     reset.addEventListener("click", resetGame);
 
     //bet_one
-    bet_one.addEventListener("click", betOne);
+    bet_one.addEventListener("click", betOne1);
 
     //bet_more
     bet_more.addEventListener("click", betMore);
@@ -318,24 +367,37 @@ function drawSlotMachine() {
 
 /* Utility function to show Player Stats */
 function showPlayerStats() {
-    /*winRatio = winNumber / turn;
-    $("#jackpot").text("Jackpot: " + jackpot);
-    $("#playerMoney").text("Player Money: " + playerMoney);
-    $("#playerTurn").text("Turn: " + turn);
-    $("#playerWins").text("Wins: " + winNumber);
-    $("#playerLosses").text("Losses: " + lossNumber);
-    $("#playerWinRatio").text("Win Ratio: " + (winRatio * 100).toFixed(2) + "%");
-    */
+    jackpotMoney.text = jackpot;
+    playerValue.text = playerMoney;
+    betValue.text = bet1.toString();
 
-    
     stage.update();
 }
 
+//bet one
+function betOne1() {
+    playerBet = 1;
+    bet1 +=1;
+    console.log(bet1);
+    showPlayerStats();
+}
+
+//bet more
+function betMore() {
+    playerBet = 10;
+    bet1 += 10;
+    showPlayerStats();
+}
+
+//reset game
+function resetGame() {
+
+}
 
 //spin button - function
 /* When the player clicks the spin button the game kicks off */
 function spinGame() {
-    if (bet = 0) {
+    if (bet1 = 0) {
         alert("Please choose a bet");
     }
     else {
@@ -355,7 +417,7 @@ function spinGame() {
         }
         else if (playerBet <= playerMoney) {
             spinResult = Reels();
-            bet = bet - playerBet;
+            bet1 = bet1 - playerBet;
             //fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
             //$("div#result>p").text(fruits);
             determineWinnings();
