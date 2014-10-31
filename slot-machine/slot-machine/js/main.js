@@ -360,7 +360,7 @@ function drawSlotMachine() {
                     betSign, betValue,
                     exitButton
                     );
-
+     
     stage.addChild(reel[0], reel[1], reel[2], betLine);
 
     /*event for the buttons*/
