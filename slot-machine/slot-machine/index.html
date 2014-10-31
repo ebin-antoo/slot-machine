@@ -2,13 +2,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Slot Machine</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body onload="init();">
 
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align:center; font-size: 25px;">WELCOME TO W W W CASINO</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>Hi,</h3>
+                    <h3>Spin the game and win $$</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--Canvas-->
     <canvas id="canvas" width="1340" height="640"></canvas>
-
-    
 
     <style type="text/css">
         body {
@@ -17,9 +35,15 @@
     </style>
 
     <script type="text/javascript" src="js/jquery.js"></script>
-    
+    <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/easeljs-0.7.1.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('#basicModal').modal('show');
+        });
+    </script>
 
 </body>
 </html>

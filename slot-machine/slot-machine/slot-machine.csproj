@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\bootstrap.min.css" />
     <Content Include="images\.DS_Store" />
     <Content Include="images\bar.png" />
     <Content Include="images\bell.jpg" />
@@ -91,6 +92,8 @@
     <Content Include="images\slot_machine6.0.jpg" />
     <Content Include="images\slot_machine7.0.jpg" />
     <Content Include="images\slot_machine8.0.jpg" />
+    <Content Include="images\speaker.png" />
+    <Content Include="images\speakerMute.png" />
     <Content Include="images\spin.jpg" />
     <Content Include="images\Thumbs.db" />
     <None Include="Web.Debug.config">
@@ -103,6 +106,7 @@
   <ItemGroup>
     <Content Include="images\winningsign.jpg" />
     <Content Include="index.html" />
+    <Content Include="js\bootstrap.min.js" />
     <Content Include="js\easeljs-0.7.1.min.js" />
     <Content Include="js\jquery.js" />
     <Content Include="js\main.js" />

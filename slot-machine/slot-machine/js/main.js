@@ -266,6 +266,7 @@ function init() {
 
     drawSlotMachine();
 
+    //play bg sound
     bgSound.loop = true;
     bgSound.play();
     bgSound.volume = .20
@@ -331,7 +332,7 @@ function drawSlotMachine() {
     playerSign.x = 481;
     playerSign.y = 415;
 
-    var playerValue = new createjs.Text(playerMoney, "22px Arial", "white");
+    playerValue = new createjs.Text(playerMoney, "22px Arial", "white");
     playerValue.x = 514;
     playerValue.y = 415;
 
@@ -373,13 +374,24 @@ function drawSlotMachine() {
     exitButton.x = 915;
     exitButton.y = 75;
 
+    //speaker
+    var speaker = new createjs.Bitmap("images/speaker.png");
+    speaker.x = 923;
+    speaker.y = 167;
+
+    //speaker mute
+    var speakerMute = new createjs.Bitmap("images/speakerMute.png");
+    speakerMute.x = 923;
+    speakerMute.y = 167;
+
     stage.addChild(slotMachine, reset, bet_one, bet_more, spin,
                     jackpotSign, jackpotMoney,
                     playerSign, playerValue,
                     winningLabel, winningMoney,
                     betSign, betValue,
                     exitButton,
-                    jackpotLabel, playerMoneyLabel, betLabel
+                    jackpotLabel, playerMoneyLabel, betLabel,
+                    speaker
                     );
      
     stage.addChild(reel[0], reel[1], reel[2], betLine);
@@ -399,6 +411,9 @@ function drawSlotMachine() {
 
     //exit button
     exitButton.addEventListener("click", exitGame);
+
+    //speaker
+    speaker.addEventListener("click", muteBg);
 }
 
 /* Utility function to show Player Stats */
@@ -406,7 +421,8 @@ function showPlayerStats() {
     jackpotMoney.text = jackpot.toString();
     playerValue.text = playerMoney.toString();
     betValue.text = bet1.toString();
-
+    
+    playerValue.text = playerMoney.toString();
     //winningMoney.text = winnings.toString();
     stage.update();
 }
@@ -415,8 +431,9 @@ function showPlayerStats() {
 function betOne1() {
     betClick.play();
     playerBet = 1;
-    bet1 +=1;
-    console.log(bet1);
+    bet1 += 1;
+    playerMoney -= 1;
+    console.log(playerMoney);
     showPlayerStats();
 }
 
@@ -425,6 +442,7 @@ function betMore() {
     betClick.play();
     playerBet = 10;
     bet1 += 10;
+    playerMoney -= 10;
     showPlayerStats();
 }
 
@@ -445,7 +463,12 @@ function exitGame() {
         alert("Thanks for playing!");
         window.close();
     }
-} 
+}
+
+//mute bg
+function muteBg() {
+    bgSound.pause();
+}
 
 //spin button - function
 /* When the player clicks the spin button the game kicks off */
