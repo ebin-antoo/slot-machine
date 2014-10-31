@@ -45,19 +45,19 @@ var barImg = new Image();
 barImg.src = "images/bar.png";
 
 var diamondImg = new Image();
-diamondImg.src = "images/diamond.jpg";
+diamondImg.src = "images/diamond.png";
 
 var bellImg = new Image();
-bellImg.src = "images/bell.jpg";
+bellImg.src = "images/bell.png";
 
 var coinImg = new Image();
 coinImg.src = "images/coin.png";
 
 var cardImg = new Image();
-cardImg.src = "images/playingcard.jpg";
+cardImg.src = "images/playingcard.png";
 
 var goldbarImg = new Image();
-goldbarImg.src = "images/goldbar.jpg";
+goldbarImg.src = "images/goldbar.png";
 
 var bet1 = 0;
 
@@ -113,14 +113,17 @@ function showWinMessage() {
     resetFruitTally();
     checkJackPot();
 
-    winningMoney.text = winnings;
+    winningMoney.text = winnings.toString();
 }
 
 /* Utility function to show a loss message and reduce player money */
 function showLossMessage() {
     playerMoney -= playerBet;
+    //win.text = 0;
     console.log("You Lost!");
     resetFruitTally();
+    jackpot += parseInt(playerBet);
+    stage.update();
 }
 
 /* Utility function to check if a value falls within a range of bounds */
@@ -154,9 +157,9 @@ function Reels() {
                 reel[spin].image = cashImg;
                 break;
             case checkRange(outCome[spin], 38, 46): // 13.8% probability
-                betLine[spin] = "number7";
-                number7++;
-                reel[spin].image = number7Img;
+                betLine[spin] = "goldbar";
+                gold++;
+                reel[spin].image = goldbarImg;
                 break;
             case checkRange(outCome[spin], 47, 54): // 12.3% probability
                 betLine[spin] = "bar";
@@ -179,9 +182,9 @@ function Reels() {
                 reel[spin].image = coinImg;
                 break;
             case checkRange(outCome[spin], 65, 65): //  1.5% probability
-                betLine[spin] = "goldbar";
-                gold++;
-                reel[spin].image = goldbarImg;
+                betLine[spin] = "number7";
+                number7++;
+                reel[spin].image = number7Img;
                 break;
         }
     }
@@ -189,53 +192,51 @@ function Reels() {
 }
 
 /* This function calculates the player's winnings, if any */
-function determineWinnings()
-{
-    if (blanks == 0)
-    {
-        if (grapes == 3) {
+function determineWinnings() {
+    if (card == 0) {
+        if (cash == 3) {
             winnings = playerBet * 10;
         }
-        else if(bananas == 3) {
+        else if (number7 == 3) {
             winnings = playerBet * 20;
         }
-        else if (oranges == 3) {
+        else if (bar == 3) {
             winnings = playerBet * 30;
         }
-        else if (cherries == 3) {
+        else if (diamond == 3) {
             winnings = playerBet * 40;
         }
-        else if (bars == 3) {
+        else if (bell == 3) {
             winnings = playerBet * 50;
         }
-        else if (bells == 3) {
+        else if (coin == 3) {
             winnings = playerBet * 75;
         }
-        else if (sevens == 3) {
+        else if (gold == 3) {
             winnings = playerBet * 100;
         }
-        else if (grapes == 2) {
+        else if (cash == 2) {
             winnings = playerBet * 2;
         }
-        else if (bananas == 2) {
+        else if (number7 == 2) {
             winnings = playerBet * 2;
         }
-        else if (oranges == 2) {
+        else if (bar == 2) {
             winnings = playerBet * 3;
         }
-        else if (cherries == 2) {
+        else if (diamond == 2) {
             winnings = playerBet * 4;
         }
-        else if (bars == 2) {
+        else if (bell == 2) {
             winnings = playerBet * 5;
         }
-        else if (bells == 2) {
+        else if (coin == 2) {
             winnings = playerBet * 10;
         }
-        else if (sevens == 2) {
+        else if (gold == 2) {
             winnings = playerBet * 20;
         }
-        else if (sevens == 1) {
+        else if (gold == 1) {
             winnings = playerBet * 5;
         }
         else {
@@ -244,12 +245,11 @@ function determineWinnings()
         winNumber++;
         showWinMessage();
     }
-    else
-    {
+    else {
         lossNumber++;
         showLossMessage();
     }
-    
+
 }
 
 //Draws Canvas
@@ -325,31 +325,43 @@ function drawSlotMachine() {
 
     //winningsign board
     var winningSign = new createjs.Bitmap("images/winningsign.jpg");
-    winningSign.x = 797;
-    winningSign.y = 412;
+    winningSign.x = 638;
+    winningSign.y = 520;
 
-    var winningMoney = new createjs.Text(winnings, "22px Arial", "white");
-    winningMoney.x = 831;
-    winningMoney.y = 412;
+    winningMoney = new createjs.Text(winnings, "22px Arial", "white");
+    winningMoney.x = 645;
+    winningMoney.y = 518;
     
 
     //bet sign board
     var betSign = new createjs.Bitmap("images/betsign.jpg");
-    betSign.x = 638;
-    betSign.y = 520;
+    betSign.x = 797;
+    betSign.y = 412;
 
-    betValue = new createjs.Text(bet1, "22px Arial", "blue");
-    betValue.x = 645;
-    betValue.y = 518;
+    betValue = new createjs.Text(bet1, "22px Arial", "white");
+    betValue.x = 831;
+    betValue.y = 412;
+
+
+    //bet line
+    var betLine = new createjs.Bitmap("images/betline.png");
+    betLine.x = 539;
+    betLine.y = 302;
+
+    //exit
+    var exitButton = new createjs.Bitmap("images/powerButton.png");
+    exitButton.x = 915;
+    exitButton.y = 75;
 
     stage.addChild(slotMachine, reset, bet_one, bet_more, spin,
                     jackpotSign, jackpotMoney,
                     playerSign, playerValue,
                     winningSign, winningMoney,
-                    betSign, betValue
+                    betSign, betValue,
+                    exitButton
                     );
 
-    stage.addChild(reel[0], reel[1], reel[2]);
+    stage.addChild(reel[0], reel[1], reel[2], betLine);
 
     /*event for the buttons*/
     //reset
@@ -367,10 +379,11 @@ function drawSlotMachine() {
 
 /* Utility function to show Player Stats */
 function showPlayerStats() {
-    jackpotMoney.text = jackpot;
-    playerValue.text = playerMoney;
+    jackpotMoney.text = jackpot.toString();
+    playerValue.text = playerMoney.toString();
     betValue.text = bet1.toString();
 
+    winningMoney.text = winnings.toString();
     stage.update();
 }
 
@@ -391,18 +404,23 @@ function betMore() {
 
 //reset game
 function resetGame() {
-
+    var r = confirm("Are you sure, you want to Reset?");
+    if (r == true) {
+        resetAll();
+        showPlayerStats();
+    } else {
+        alert("You can continue the game");
+    }
 }
 
 //spin button - function
 /* When the player clicks the spin button the game kicks off */
 function spinGame() {
     if (bet1 = 0) {
+        console.log("ni");
         alert("Please choose a bet");
     }
     else {
-        
-
         if (playerMoney == 0) {
             if (confirm("You ran out of Money! \nDo you want to play again?")) {
                 resetAll();
@@ -418,14 +436,12 @@ function spinGame() {
         else if (playerBet <= playerMoney) {
             spinResult = Reels();
             bet1 = bet1 - playerBet;
-            //fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
-            //$("div#result>p").text(fruits);
             determineWinnings();
             turn++;
             showPlayerStats();
         }
         else {
-            alert("Please enter a valid bet amount");
+            alert("Please choose a valid bet");
         }
     }
 }
