@@ -69,6 +69,10 @@ var reelLine3;
 //start up screen reel
 var reel = [reelLine1 = new createjs.Bitmap(cashImg), reelLine2 = new createjs.Bitmap(number7Img), reelLine3 = new createjs.Bitmap(barImg)];
 
+//background sound
+var bgSound = new Audio("./sounds/Casino Crowd Ambiance.mp3");
+var betClick = new Audio("./sounds/coins-drop.mp3");
+
 /* Utility function to reset all fruit tallies */
 function resetFruitTally() {
     cash = 0;
@@ -113,7 +117,7 @@ function showWinMessage() {
     resetFruitTally();
     checkJackPot();
 
-    winningMoney.text = winnings.toString();
+    winningMoney.text = "You Won: $" + winnings; //winnings.toString();
 }
 
 /* Utility function to show a loss message and reduce player money */
@@ -259,6 +263,10 @@ function init() {
     createjs.Ticker.addEventListener("tick", handleTick);
 
     drawSlotMachine();
+
+    bgSound.loop = true;
+    bgSound.play();
+    bgSound.volume = .20
 }
 
 //stage update
@@ -375,6 +383,9 @@ function drawSlotMachine() {
 
     //spin
     spin.addEventListener("click", spinGame);
+
+    //exit button
+    exitButton.addEventListener("click", exitGame);
 }
 
 /* Utility function to show Player Stats */
@@ -383,12 +394,13 @@ function showPlayerStats() {
     playerValue.text = playerMoney.toString();
     betValue.text = bet1.toString();
 
-    winningMoney.text = winnings.toString();
+    //winningMoney.text = winnings.toString();
     stage.update();
 }
 
 //bet one
 function betOne1() {
+    betClick.play();
     playerBet = 1;
     bet1 +=1;
     console.log(bet1);
@@ -397,6 +409,7 @@ function betOne1() {
 
 //bet more
 function betMore() {
+    betClick.play();
     playerBet = 10;
     bet1 += 10;
     showPlayerStats();
@@ -413,10 +426,18 @@ function resetGame() {
     }
 }
 
+//exit game
+function exitGame() {
+    if (confirm("Exit The Game?")) {
+        alert("Thanks for playing!");
+        window.close();
+    }
+}
+
 //spin button - function
 /* When the player clicks the spin button the game kicks off */
 function spinGame() {
-    if (bet1 = 0) {
+    if (bet1 == 0 || bet1 <= 0) {
         console.log("ni");
         alert("Please choose a bet");
     }
