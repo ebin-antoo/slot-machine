@@ -127,6 +127,8 @@ function showLossMessage() {
     console.log("You Lost!");
     resetFruitTally();
     jackpot += parseInt(playerBet);
+
+    winningMoney.text = "You Lost! Try Again";
     stage.update();
 }
 
@@ -320,6 +322,9 @@ function drawSlotMachine() {
     jackpotMoney.x = 660;
     jackpotMoney.y = 214;
 
+    var jackpotLabel = new createjs.Text("JACKPOT", "bold 23px Arial", "black");
+    jackpotLabel.x = 629;
+    jackpotLabel.y = 193;
 
     //player money sign
     var playerSign = new createjs.Bitmap("images/playersign.jpg");
@@ -329,16 +334,20 @@ function drawSlotMachine() {
     var playerValue = new createjs.Text(playerMoney, "22px Arial", "white");
     playerValue.x = 514;
     playerValue.y = 415;
+
+    var playerMoneyLabel = new createjs.Text("PLAYER MONEY", "bold 20px Arial", "black");
+    playerMoneyLabel.x = 478;
+    playerMoneyLabel.y = 394;
     
 
-    //winningsign board
-    var winningSign = new createjs.Bitmap("images/winningsign.jpg");
-    winningSign.x = 638;
-    winningSign.y = 520;
+    //winningsign 
+    var winningLabel = new createjs.Text("Result: ", "bold 25px Arial", "black");
+    winningLabel.x = 485;
+    winningLabel.y = 516;
 
     winningMoney = new createjs.Text(winnings, "22px Arial", "white");
-    winningMoney.x = 645;
-    winningMoney.y = 518;
+    winningMoney.x = 580;
+    winningMoney.y = 520;
     
 
     //bet sign board
@@ -350,6 +359,9 @@ function drawSlotMachine() {
     betValue.x = 831;
     betValue.y = 412;
 
+    var betLabel = new createjs.Text("BETS", "bold 20px Arial", "black");
+    betLabel.x = 830;
+    betLabel.y = 393;
 
     //bet line
     var betLine = new createjs.Bitmap("images/betline.png");
@@ -364,9 +376,10 @@ function drawSlotMachine() {
     stage.addChild(slotMachine, reset, bet_one, bet_more, spin,
                     jackpotSign, jackpotMoney,
                     playerSign, playerValue,
-                    winningSign, winningMoney,
+                    winningLabel, winningMoney,
                     betSign, betValue,
-                    exitButton
+                    exitButton,
+                    jackpotLabel, playerMoneyLabel, betLabel
                     );
      
     stage.addChild(reel[0], reel[1], reel[2], betLine);
@@ -432,7 +445,7 @@ function exitGame() {
         alert("Thanks for playing!");
         window.close();
     }
-}
+} 
 
 //spin button - function
 /* When the player clicks the spin button the game kicks off */
