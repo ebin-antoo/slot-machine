@@ -459,7 +459,7 @@ function resetGame() {
 
 //exit game
 function exitGame() {
-    if (confirm("Exit The Game?")) {
+    if (confirm("Exit The Game?")) { 
         alert("Thanks for playing!");
         window.close();
     }
